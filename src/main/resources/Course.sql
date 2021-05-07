@@ -1,4 +1,4 @@
-Use SMS;
+Use sms;
 
 insert into Course (id, name, instructor) values (1, 'English', 'Anderea Scamaden');
 insert into Course (id, name, instructor) values (2, 'Mathematics', 'Eustace Niemetz');
