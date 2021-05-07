@@ -9,6 +9,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * Collection of methods for manipulating Course entities in the database.
+ */
 public class CourseService implements CourseDAO {
     /**
      * Gets a list of all currently offered courses in the database.
@@ -39,6 +42,12 @@ public class CourseService implements CourseDAO {
         return null;
     }
 
+    /**
+     * PLEASE NOTE: Extra added method for retrieving a course by its ID number. Used to check for a valid choice in
+     * the enrollment menu.
+     * @param id ID of course to find
+     * @return Course entity matching ID or null if not found.
+     */
     @Override
     public Course getCourseById(int id) {
 

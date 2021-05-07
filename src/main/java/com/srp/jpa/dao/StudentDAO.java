@@ -13,7 +13,7 @@ public interface StudentDAO {
 
     boolean validateStudent(String sEmail, String sPassword);
 
-    void registerStudentToCourse(String sEmail, int cId);
+    boolean registerStudentToCourse(String sEmail, int cId);
 
     List<Course> getStudentCourses(String sEmail);
 

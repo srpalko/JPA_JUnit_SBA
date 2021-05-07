@@ -1,6 +1,7 @@
 package com.srp.jpa.entitymodels;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Course")
@@ -64,5 +65,18 @@ public class Course {
     @Override
     public String toString() {
         return String.format("Course ID: %-11d | Name: %-50s | Instructor: %-50s", cId, cName, cInstructorName);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return cId == course.cId && Objects.equals(cName, course.cName) && Objects.equals(cInstructorName, course.cInstructorName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cId, cName, cInstructorName);
     }
 }
