@@ -41,6 +41,7 @@ class CourseServiceTest {
         cs = new CourseService();
     }
 
+    @Disabled
     @Test
     void getAllCourses() {
         int numberOfCourses = 10;
@@ -58,6 +59,7 @@ class CourseServiceTest {
 
     }
 
+    @Disabled
     @Test
     void getCourseById() {
         /*Maybe not the absolute best way to do a test. But I'm learning!*/

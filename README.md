@@ -6,7 +6,7 @@ This is basic student management app demonstrating JPA and JUnit skills. A valid
 * I have not made use of either of the other two "hint" files.
 * The app creates 4 tables in the database: "Course" and "Student" for the entities, a join table "Student_Course" and an ID generation table, "SMS_SEQUENCE".
 * In addition to the required classes, I have added a package-info.java file in the entitymodels package for the purpose of implementing a Hibernate generator for ID generation at the package level. I also have a package env with a helper class FactoryProvider to hold the EntityManagerFactory instead of having it in the Runner classes. Finally, there are two Runner classes. SteveSMSRunner is my own implementation. SMSRunner is the given "hint" implementation. Either one works, but I like mine better...
-* If your database is in any way different than the one given for the project, the tests may not pass. Please mark them @Disabled if this happens.
+* If your database is in any way different than the one given for the project, the tests may not pass. Tests are disabled by default. Comment out @Disabled to test.
 
 
 ## Requirements
