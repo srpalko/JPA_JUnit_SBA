@@ -6,6 +6,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Student")
@@ -81,5 +82,18 @@ public class Student {
     @Override
     public String toString() {
         return String.format("Student: %-50s | Email: %-50s | Password: %-50s", sName, sEmail, sPass);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return sEmail.equals(student.sEmail) && sName.equals(student.sName) && sPass.equals(student.sPass) && sCourses.equals(student.sCourses);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sEmail, sName, sPass, sCourses);
     }
 }
