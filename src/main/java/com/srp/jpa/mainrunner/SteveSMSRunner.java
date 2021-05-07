@@ -6,6 +6,7 @@ import com.srp.jpa.env.FactoryProvider;
 import com.srp.jpa.service.CourseService;
 import com.srp.jpa.service.StudentService;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -38,7 +39,7 @@ public class SteveSMSRunner {
         do {
             System.out.print("Enter email or 'q' to quit: ");
             email = input.nextLine();
-            if (email.charAt(0) == 'q') {
+            if (email.charAt(0) == 'q' && email.length() == 1) {
                 System.out.println("Goodbye");
                 FactoryProvider.shutdownFactory();
                 System.exit(0);
@@ -62,11 +63,19 @@ public class SteveSMSRunner {
             System.out.println("---------------------------------");
             List<Course> studentCourses = studentService.getStudentCourses(email);
             displayList(studentCourses);
-            int choice;
+            int choice = 0;
             /*User must choose an option*/
             do {
                 System.out.print("Options: (1)Register for course (2)Logout: ");
-                choice = input.nextInt();
+                try {
+                    choice = input.nextInt();
+                    if (choice < 1 || choice > 2) {
+                        throw new InputMismatchException();
+                    }
+                } catch (InputMismatchException e) {
+                    input.nextLine(); // discard a line in case of exception
+                    System.out.println("Please choose (1) or (2)");
+                }
             } while (choice < 1 || choice > 2);
 
             /*All available courses are displayed. User enters their choice.*/
@@ -76,11 +85,17 @@ public class SteveSMSRunner {
                 allCourses.removeAll(studentCourses);
                 displayList(allCourses);
                 System.out.print("Which course would you like to enroll in?: ");
-                int courseNum = input.nextInt();
+                int courseNum = 0;
+                try {
+                    courseNum = input.nextInt();
+                } catch (InputMismatchException e) {
+
+                }
                 Course course = courseService.getCourseById(courseNum);
                 /*Check if the choice is a valid course*/
                 if (course == null) {
                     System.out.println("\n\nInvalid course ID\n\n");
+                    input.nextLine();
                     continue;
                 }
                 /*Check if the student has already enrolled in the course
