@@ -133,7 +133,8 @@ public class SMSRunner {
 		case 2:
 		default:
 			out.println("Goodbye!");
+			FactoryProvider.shutdownFactory();
 		}
-		FactoryProvider.shutdownFactory();
+
 	}
 }

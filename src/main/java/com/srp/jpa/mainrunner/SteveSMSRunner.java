@@ -60,7 +60,8 @@ public class SteveSMSRunner {
         while (true) {
             System.out.println("Current courses for " + student.getsName());
             System.out.println("---------------------------------");
-            displayList(studentService.getStudentCourses(email));
+            List<Course> studentCourses = studentService.getStudentCourses(email);
+            displayList(studentCourses);
             int choice;
             /*User must choose an option*/
             do {
@@ -71,7 +72,9 @@ public class SteveSMSRunner {
             /*All available courses are displayed. User enters their choice.*/
             if (choice == 1) {
                 System.out.println("\n");
-                displayList(courseService.getAllCourses());
+                List<Course> allCourses = courseService.getAllCourses();
+                allCourses.removeAll(studentCourses);
+                displayList(allCourses);
                 System.out.print("Which course would you like to enroll in?: ");
                 int courseNum = input.nextInt();
                 Course course = courseService.getCourseById(courseNum);
