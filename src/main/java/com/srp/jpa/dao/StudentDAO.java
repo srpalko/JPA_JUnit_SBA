@@ -5,6 +5,9 @@ import com.srp.jpa.entitymodels.Student;
 
 import java.util.List;
 
+/**
+ * Interface for methods used to manipulate Student entities
+ */
 public interface StudentDAO {
 
     List<Student> getAllStudents();
@@ -13,7 +16,7 @@ public interface StudentDAO {
 
     boolean validateStudent(String sEmail, String sPassword);
 
-    boolean registerStudentToCourse(String sEmail, int cId);
+    boolean registerStudentToCourse(String sEmail, int cId); // I changed this return to boolean.
 
     List<Course> getStudentCourses(String sEmail);
 

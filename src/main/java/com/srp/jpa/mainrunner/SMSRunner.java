@@ -80,12 +80,11 @@ public class SMSRunner {
     private int menu1() {
         try {
             sb.append("\n1.Student Login\n2. Quit Application\nPlease Enter Selection: ");
-            out.print(sb.toString());
+            out.print(sb);
             sb.delete(0, sb.length());
             return sin.nextInt();
         } catch (InputMismatchException e) {
             out.println("Invalid entry");
-            ;
         }
         return 2;
     }
@@ -107,7 +106,7 @@ public class SMSRunner {
         Student student = studentService.getStudentByEmail(email);
         if (student != null && retValue) {
             currentStudent = student;
-            Stream<Course> courseStream = currentStudent.getsCourses().stream();
+            Stream<Course> courseStream = currentStudent.getSCourses().stream();
             courseStream.forEach(out::println);
         }
 
@@ -129,14 +128,14 @@ public class SMSRunner {
 
     private void registerMenu() {
         sb.append("\n1.Register a class\n2. Logout\nPlease Enter Selection: ");
-        out.print(sb.toString());
+        out.print(sb);
         sb.delete(0, sb.length());
 
         try {
             switch (sin.nextInt()) {
                 case 1:
                     List<Course> allCourses = courseService.getAllCourses();
-                    List<Course> studentCourses = studentService.getStudentCourses(currentStudent.getsEmail());
+                    List<Course> studentCourses = studentService.getStudentCourses(currentStudent.getSEmail());
                     allCourses.removeAll(studentCourses);
                     out.printf("%5s%15S%15s\n", "ID", "Course", "Instructor");
                     for (Course course : allCourses) {
@@ -148,10 +147,10 @@ public class SMSRunner {
                     Course newCourse = courseService.getCourseById(number);
 
                     if (newCourse != null) {
-                        studentService.registerStudentToCourse(currentStudent.getsEmail(), number);
-                        Student temp = studentService.getStudentByEmail(currentStudent.getsEmail());
+                        studentService.registerStudentToCourse(currentStudent.getSEmail(), number);
+                        Student temp = studentService.getStudentByEmail(currentStudent.getSEmail());
 
-                        List<Course> sCourses = studentService.getStudentCourses(currentStudent.getsEmail());
+                        List<Course> sCourses = studentService.getStudentCourses(currentStudent.getSEmail());
 
 
                         out.println("MyClasses");

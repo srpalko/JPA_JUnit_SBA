@@ -17,6 +17,7 @@ public class StudentService implements StudentDAO {
 
     /**
      * Gets a list of all students in the database
+     *
      * @return List of all persisted Student entities
      */
     @Override
@@ -46,6 +47,7 @@ public class StudentService implements StudentDAO {
 
     /**
      * Finds persisted Student entity by email
+     *
      * @param sEmail email of student to find
      * @return A Student entity or null if not found
      */
@@ -71,7 +73,8 @@ public class StudentService implements StudentDAO {
 
     /**
      * Validates the login credentials of a student.
-     * @param sEmail email of student
+     *
+     * @param sEmail    email of student
      * @param sPassword password of student
      * @return true if email and password match in the database, false otherwise
      */
@@ -89,7 +92,7 @@ public class StudentService implements StudentDAO {
                 return false;
             }
             /*If given password matched persisted password, return true otherwise false*/
-            return s.getsPass().equals(sPassword);
+            return s.getSPass().equals(sPassword);
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
@@ -105,8 +108,9 @@ public class StudentService implements StudentDAO {
      * PLEASE NOTE: The return type is changed from the requirements from void to boolean to
      * accommodate checking for a successful enrollment. Logic for checking a duplicate
      * enrollment is contained in this method.
+     *
      * @param sEmail email of student to register
-     * @param cId ID of course to register student to
+     * @param cId    ID of course to register student to
      * @return true if student was enrolled by the method. false if student was previously enrolled.
      */
     @Override
@@ -118,8 +122,8 @@ public class StudentService implements StudentDAO {
             em.getTransaction().begin();
             Student student = em.find(Student.class, sEmail);
             Course course = em.find(Course.class, cId);
-            if (!student.getsCourses().contains(course)) {
-                student.getsCourses().add(course);
+            if (!student.getSCourses().contains(course)) {
+                student.getSCourses().add(course);
                 em.getTransaction().commit();
                 return true;
             } else {
@@ -142,6 +146,7 @@ public class StudentService implements StudentDAO {
 
     /**
      * Gets a list of all courses that a given student is enrolled in.
+     *
      * @param sEmail email of student
      * @return List of Course entities or null if no courses are enrolled??
      */
@@ -155,7 +160,7 @@ public class StudentService implements StudentDAO {
             em.getTransaction().begin();
             Student student = em.find(Student.class, sEmail);
             em.getTransaction().commit();
-            return student.getsCourses();
+            return student.getSCourses();
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {

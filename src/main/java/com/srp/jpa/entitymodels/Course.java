@@ -3,9 +3,12 @@ package com.srp.jpa.entitymodels;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * Entity representing Courses
+ */
 @Entity
 @Table(name = "Course")
-@NamedQuery(name="getAllCourses", query="select c from Course c")
+@NamedQuery(name = "getAllCourses", query = "select c from Course c")
 public class Course {
 
     /* FIELDS */
@@ -37,28 +40,28 @@ public class Course {
     }
 
     /* GETTERS/SETTERS*/
-    public int getcId() {
+    public int getCId() {
         return cId;
     }
 
-    // Setter for cId should not be accessible as cId is auto-generated.
-/*    public void setcId(int cId) {
+    // Setter for cId should not be accessible as cId is auto-generated. But it is here!
+/*    public void setCId(int cId) {
         this.cId = cId;
     }*/
 
-    public String getcName() {
+    public String getCName() {
         return cName;
     }
 
-    public void setcName(String cName) {
+    public void setCName(String cName) {
         this.cName = cName;
     }
 
-    public String getcInstructorName() {
+    public String getCInstructorName() {
         return cInstructorName;
     }
 
-    public void setcInstructorName(String cInstructorName) {
+    public void setCInstructorName(String cInstructorName) {
         this.cInstructorName = cInstructorName;
     }
 

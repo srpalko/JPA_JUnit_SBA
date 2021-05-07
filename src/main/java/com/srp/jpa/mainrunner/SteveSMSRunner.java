@@ -33,9 +33,9 @@ public class SteveSMSRunner {
         Student student;
 
         /*Login to the system---------------------------------
-        * User is asked to enter their email or q to quit.
-        * User is then asked for password. Credentials are checked against the database.
-        * A valid login results in the program continuing, invalid login results in a loop.*/
+         * User is asked to enter their email or q to quit.
+         * User is then asked for password. Credentials are checked against the database.
+         * A valid login results in the program continuing, invalid login results in a loop.*/
         do {
             System.out.print("Enter email or 'q' to quit: ");
             email = input.nextLine();
@@ -56,10 +56,10 @@ public class SteveSMSRunner {
         System.out.println();
 
         /*Course registration-----------------------------------
-        * Current course enrollment is displayed for the current user and options are displayed.
-       */
+         * Current course enrollment is displayed for the current user and options are displayed.
+         */
         while (true) {
-            System.out.println("Current courses for " + student.getsName());
+            System.out.println("Current courses for " + student.getSName());
             System.out.println("---------------------------------");
             List<Course> studentCourses = studentService.getStudentCourses(email);
             displayList(studentCourses);
@@ -99,8 +99,8 @@ public class SteveSMSRunner {
                     continue;
                 }
                 /*Check if the student has already enrolled in the course
-                * registerStudentToCourse() will return false if it was unable to enroll due
-                * to duplicate enrollment.*/
+                 * registerStudentToCourse() will return false if it was unable to enroll due
+                 * to duplicate enrollment.*/
                 boolean isNowEnrolled = studentService.registerStudentToCourse(email, courseNum);
                 if (!isNowEnrolled) {
                     System.out.println("\n\nYou are already enrolled in that course.");
@@ -108,7 +108,7 @@ public class SteveSMSRunner {
                     continue;
                 }
                 /*Successful enrollment. Menu loops until user quits.*/
-                System.out.println("\nSuccessful enrollment in " + course.getcName());
+                System.out.println("\nSuccessful enrollment in " + course.getCName());
                 System.out.println();
             } else {
                 System.out.println("\n\nHave a nice day!\n\n");

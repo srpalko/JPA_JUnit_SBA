@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Entity that represents Students
+ */
 @Entity
 @Table(name = "Student")
 @NamedQueries({
@@ -46,36 +49,36 @@ public class Student {
 
 
     /* GETTERS/SETTERS */
-    public String getsEmail() {
+    public String getSEmail() {
         return sEmail;
     }
 
     /* Email should not be changed after creation as it is the primary key in the database.*/
-/*    public void setsEmail(String sEmail) {
+/*    public void setSEmail(String sEmail) {
         this.sEmail = sEmail;
     }*/
 
-    public String getsName() {
+    public String getSName() {
         return sName;
     }
 
-    public void setsName(String sName) {
+    public void setSName(String sName) {
         this.sName = sName;
     }
 
-    public String getsPass() {
+    public String getSPass() {
         return sPass;
     }
 
-    public void setsPass(String sPass) {
+    public void setSPass(String sPass) {
         this.sPass = sPass;
     }
 
-    public List<Course> getsCourses() {
+    public List<Course> getSCourses() {
         return sCourses;
     }
 
-    public void setsCourses(List<Course> sCourses) {
+    public void setSCourses(List<Course> sCourses) {
         this.sCourses = sCourses;
     }
 

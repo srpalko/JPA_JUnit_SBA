@@ -45,6 +45,7 @@ public class CourseService implements CourseDAO {
     /**
      * PLEASE NOTE: Extra added method for retrieving a course by its ID number. Used to check for a valid choice in
      * the enrollment menu.
+     *
      * @param id ID of course to find
      * @return Course entity matching ID or null if not found.
      */
@@ -59,6 +60,9 @@ public class CourseService implements CourseDAO {
             em.getTransaction().commit();
             return course;
         } catch (HibernateException e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
             e.printStackTrace();
         } finally {
             if (em != null && em.isOpen()) {

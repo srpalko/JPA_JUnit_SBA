@@ -40,8 +40,8 @@ class StudentServiceTest {
             entityManager.getTransaction().begin();
             Query query = entityManager.createQuery("select s from Student s where s.sEmail = 'stephenpalko@gmail.com'");
             Student retreived = (Student) query.getSingleResult();
-            expected = new Student(retreived.getsName(), retreived.getsEmail(), retreived.getsPass());
-            expected.getsCourses().addAll(retreived.getsCourses());
+            expected = new Student(retreived.getSName(), retreived.getSEmail(), retreived.getSPass());
+            expected.getSCourses().addAll(retreived.getSCourses());
         } catch (HibernateException exception) {
             System.out.println(exception.getMessage());
         }
